@@ -16,6 +16,10 @@ if (!$other) { header("Location: inbox.php"); exit(); }
 $other_avatar   = $other['profile_image'] ?? '';
 $other_location = $other['location']      ?? '';
 
+<<<<<<< HEAD
+=======
+// Product context (don't restrict to seller_id so buyer can also see their own product)
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 $product = null;
 if ($product_id) {
     $product = mysqli_fetch_assoc(mysqli_query($conn,
@@ -34,11 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty(trim($_POST['message_text'] 
     exit();
 }
 
+<<<<<<< HEAD
 // Mark messages as read
 @mysqli_query($conn,
     "UPDATE messages SET is_read=1 WHERE sender_id=$seller_id AND receiver_id=$my_id");
 
 // Load conversation — ORDER BY id ASC
+=======
+// Mark messages from the other person as read (only if column exists)
+@mysqli_query($conn,
+    "UPDATE messages SET is_read=1 WHERE sender_id=$seller_id AND receiver_id=$my_id");
+
+// Load conversation — uses created_at (matches your DB)
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 $messages = mysqli_query($conn,
     "SELECT m.*, u.full_name AS sender_name, u.profile_image AS sender_avatar
      FROM messages m
@@ -62,7 +74,11 @@ $me_avatar = $me_row['profile_image'] ?? '';
       <a href="inbox.php" style="color:#888;text-decoration:none;font-size:1.1rem;padding:6px;">
         <i class="fa-solid fa-arrow-left"></i>
       </a>
+<<<<<<< HEAD
       <?php if (!empty($other_avatar) && file_exists(__DIR__ . '/' . $other_avatar)): ?>
+=======
+      <?php if (!empty($other_avatar) && file_exists($other_avatar)): ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         <img src="<?php echo htmlspecialchars($other_avatar); ?>"
              style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--tip-gold);flex-shrink:0;">
       <?php else: ?>
@@ -95,6 +111,7 @@ $me_avatar = $me_row['profile_image'] ?? '';
     <div class="d-flex align-items-center gap-3 p-3 mb-3 rounded-3 flex-wrap"
          style="background:linear-gradient(135deg,var(--tip-black),#2a0d17);border-left:4px solid var(--tip-gold);">
       <?php
+<<<<<<< HEAD
         $p_img_path = trim($product['image_path'] ?? '');
         $p_has_img  = !empty($p_img_path) && file_exists(__DIR__ . '/' . $p_img_path);
         $p_img      = $p_has_img ? htmlspecialchars($p_img_path) : '';
@@ -109,6 +126,14 @@ $me_avatar = $me_row['profile_image'] ?? '';
           <i class="fa-solid fa-image" style="color:var(--tip-gold);font-size:1.3rem;"></i>
         </div>
       <?php endif; ?>
+=======
+        $p_img = (!empty($product['image_path']) && file_exists($product['image_path']))
+          ? htmlspecialchars($product['image_path'])
+          : 'https://picsum.photos/seed/' . ($product['id'] * 7 + 13) . '/60/60';
+      ?>
+      <img src="<?php echo $p_img; ?>"
+           style="width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid var(--tip-gold);flex-shrink:0;">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
       <div class="flex-grow-1">
         <div style="color:rgba(255,255,255,0.5);font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;">
           Asking About
@@ -148,14 +173,22 @@ $me_avatar = $me_row['profile_image'] ?? '';
           $initials = $is_mine
             ? strtoupper(substr($me_row['full_name'], 0, 1))
             : strtoupper(substr($other['full_name'],  0, 1));
+<<<<<<< HEAD
 
           // Use created_at — matches your actual DB column
+=======
+          // Use created_at (your actual column name)
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
           $msg_time = !empty($msg['created_at'])
             ? date('M d, g:i A', strtotime($msg['created_at'])) : '';
         ?>
         <div class="chat-bubble-wrap <?php echo $is_mine ? 'mine' : ''; ?>">
           <div class="chat-avatar">
+<<<<<<< HEAD
             <?php if (!empty($av_src) && file_exists(__DIR__ . '/' . $av_src)): ?>
+=======
+            <?php if (!empty($av_src) && file_exists($av_src)): ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               <img src="<?php echo htmlspecialchars($av_src); ?>" alt="">
             <?php else: ?>
               <?php echo $initials; ?>
@@ -204,4 +237,8 @@ $me_avatar = $me_row['profile_image'] ?? '';
   if (ca) ca.scrollTop = ca.scrollHeight;
 </script>
 
+<<<<<<< HEAD
 <?php include 'footer.php'; ?>
+=======
+<?php include 'footer.php'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad

@@ -4,6 +4,10 @@ session_start();
 ?>
 <?php include 'header.php'; ?>
 
+<<<<<<< HEAD
+=======
+<!-- HERO -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 <section class="tip-hero">
   <div class="container">
     <div class="row align-items-center">
@@ -30,6 +34,10 @@ session_start();
   </div>
 </section>
 
+<<<<<<< HEAD
+=======
+<!-- PRODUCTS -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 <section class="py-5">
   <div class="container">
 
@@ -71,33 +79,53 @@ session_start();
     <?php else: ?>
     <div class="row g-4">
       <?php while ($row = mysqli_fetch_assoc($result)):
+<<<<<<< HEAD
 
         $img_path  = trim($row['image_path'] ?? '');
         // Always check against absolute disk path
         $has_image = !empty($img_path) && file_exists(__DIR__ . '/' . $img_path);
 
+=======
+        $has_image = !empty($row['image_path']) && file_exists($row['image_path']);
+        $img_src   = $has_image
+                       ? htmlspecialchars($row['image_path'])
+                       : 'https://picsum.photos/seed/' . ($row['id'] * 7 + 13) . '/300/200';
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         $is_owner  = isset($_SESSION['user_id']) && $row['seller_id'] == $_SESSION['user_id'];
       ?>
       <div class="col-sm-6 col-md-4 col-xl-3">
         <div class="product-card card h-100">
 
+<<<<<<< HEAD
           <div style="position:relative;overflow:hidden;height:190px;background:#ececec;">
             <?php if ($has_image): ?>
               <img src="<?php echo htmlspecialchars($img_path); ?>"
                    alt="<?php echo htmlspecialchars($row['title']); ?>"
                    loading="lazy"
                    style="width:100%;height:190px;object-fit:cover;">
+=======
+          <!-- Product Image -->
+          <div style="position:relative;overflow:hidden;height:190px;background:#f0f0f0;">
+            <img src="<?php echo $img_src; ?>"
+                 alt="<?php echo htmlspecialchars($row['title']); ?>"
+                 loading="lazy"
+                 style="width:100%;height:190px;object-fit:cover;">
+            <?php if ($has_image): ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               <span style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.55);
                            color:#fff;font-size:0.68rem;font-weight:700;
                            padding:3px 8px;border-radius:20px;letter-spacing:.5px;">
                 <i class="fa-solid fa-camera me-1"></i>PHOTO
               </span>
+<<<<<<< HEAD
             <?php else: ?>
               <div style="width:100%;height:190px;display:flex;flex-direction:column;
                           align-items:center;justify-content:center;gap:8px;">
                 <i class="fa-solid fa-image" style="font-size:2.4rem;color:#ccc;"></i>
                 <span style="font-size:0.75rem;color:#bbb;font-weight:600;">No Photo</span>
               </div>
+=======
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             <?php endif; ?>
           </div>
 
@@ -108,6 +136,7 @@ session_start();
             </p>
             <div class="price-badge mb-2">₱<?php echo number_format($row['price'],2); ?></div>
 
+<<<<<<< HEAD
             <div class="seller-info mb-3">
               <?php
                 $s_avatar  = trim($row['seller_avatar'] ?? '');
@@ -117,17 +146,32 @@ session_start();
                 <img src="<?php echo htmlspecialchars($s_avatar); ?>"
                      style="width:18px;height:18px;border-radius:50%;object-fit:cover;
                             margin-right:4px;border:1.5px solid var(--tip-gold);">
+=======
+            <!-- Clickable seller name -->
+            <div class="seller-info mb-3">
+              <?php if (!empty($row['seller_avatar']) && file_exists($row['seller_avatar'])): ?>
+                <img src="<?php echo htmlspecialchars($row['seller_avatar']); ?>"
+                     style="width:18px;height:18px;border-radius:50%;object-fit:cover;margin-right:4px;border:1.5px solid var(--tip-gold);">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               <?php else: ?>
                 <i class="fa-solid fa-user-circle me-1"></i>
               <?php endif; ?>
               <a href="profile.php?id=<?php echo $row['seller_uid']; ?>"
                  style="color:var(--tip-muted);font-weight:700;text-decoration:none;font-size:0.8rem;"
+<<<<<<< HEAD
                  onmouseover="this.style.color='var(--tip-maroon)'"
                  onmouseout="this.style.color='var(--tip-muted)'">
+=======
+                 onmouseover="this.style.color='var(--tip-maroon)'" onmouseout="this.style.color='var(--tip-muted)'">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
                 <?php echo htmlspecialchars($row['seller_name'] ?? 'Unknown'); ?>
               </a>
             </div>
 
+<<<<<<< HEAD
+=======
+            <!-- Action buttons -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             <?php if ($is_owner): ?>
               <div class="d-flex gap-2">
                 <a href="edit_post.php?id=<?php echo $row['id']; ?>"
@@ -172,4 +216,8 @@ session_start();
   </div>
 </section>
 
+<<<<<<< HEAD
 <?php include 'footer.php'; ?>
+=======
+<?php include 'footer.php'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad

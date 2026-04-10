@@ -30,8 +30,13 @@
         <div class="footer-heading">Contact</div>
         <ul class="list-unstyled" style="line-height:2; font-size:0.85rem;">
           <li><i class="fa-solid fa-envelope me-2" style="color:var(--tip-gold)"></i>tip@student.edu</li>
+<<<<<<< HEAD
           <li><i class="fa-solid fa-location-dot me-2" style="color:var(--tip-gold)"></i>Manila City, PH</li>
           <li><i class="fa-solid fa-school me-2" style="color:var(--tip-gold)"></i>TIP – MnL Campus</li>
+=======
+          <li><i class="fa-solid fa-location-dot me-2" style="color:var(--tip-gold)"></i>Quezon City, PH</li>
+          <li><i class="fa-solid fa-school me-2" style="color:var(--tip-gold)"></i>TIP – QC Campus</li>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         </ul>
       </div>
 
@@ -49,7 +54,11 @@
 
     <hr class="footer-divider">
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+<<<<<<< HEAD
       <small>&copy; <?php echo date('Y'); ?> TIP Student Marketplace — Platform Technology - Information Management Finals Project</small>
+=======
+      <small>&copy; <?php echo date('Y'); ?> TIP Student Marketplace — Platech Finals Project</small>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
       <small>Built with <i class="fa-solid fa-heart" style="color:var(--tip-maroon)"></i> using PHP, MySQL &amp; Bootstrap 5</small>
     </div>
   </div>

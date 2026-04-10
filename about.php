@@ -1,12 +1,17 @@
 <?php session_start(); ?>
 <?php include 'header.php'; ?>
 
+<<<<<<< HEAD
 <!-- ABOUT HERO -->
+=======
+<!-- ════ ABOUT HERO ════ -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 <section class="about-hero">
   <div class="container text-center">
     <div style="font-size:3.5rem;color:var(--tip-gold);margin-bottom:14px;">
       <i class="fa-solid fa-people-group"></i>
     </div>
+<<<<<<< HEAD
     <h1 class="fw-bold" style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;
         letter-spacing:2px;color:var(--tip-gold);">
       Meet the Developers
@@ -14,11 +19,22 @@
     <p class="mt-2" style="color:rgba(255,255,255,0.7);max-width:540px;margin:0 auto;">
       TIP Student Marketplace was built as a finals project for Information Management and 
       Platform Technologies by three Bachelor of Science in Information Technology (BSIT) students from the Technological Institute of the Philippines..
+=======
+    <h1 class="fw-bold" style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:2px;color:var(--tip-gold);">
+      Meet the Developers
+    </h1>
+    <p class="mt-2" style="color:rgba(255,255,255,0.7);max-width:540px;margin:0 auto;">
+      TIP Student Marketplace was built as a Platech Finals project by three Computer Science students from the Technological Institute of the Philippines.
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
     </p>
   </div>
 </section>
 
+<<<<<<< HEAD
 <!-- TEAM CARDS -->
+=======
+<!-- ════ TEAM CARDS ════ -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 <section class="py-5">
   <div class="container">
 
@@ -29,6 +45,7 @@
 
     <div class="row g-4 justify-content-center">
 
+<<<<<<< HEAD
       <!-- Amiel -->
       <div class="col-sm-6 col-md-4">
         <div class="dev-card">
@@ -95,6 +112,35 @@
           <p class="text-muted small mb-0">Technical Documentation Lead</p>
           <hr class="my-2">
           <small class="text-muted">System Documentation &amp; Quality Assurance</small>
+=======
+      <div class="col-sm-6 col-md-4">
+        <div class="dev-card">
+          <div class="dev-avatar"><i class="fa-solid fa-user"></i></div>
+          <h5 class="fw-bold mb-1">Amiel Lapuz</h5>
+          <p class="text-muted small mb-0">Full-Stack Developer</p>
+          <hr class="my-2">
+          <small class="text-muted">Database Design &amp; Backend Logic</small>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="dev-card">
+          <div class="dev-avatar"><i class="fa-solid fa-user"></i></div>
+          <h5 class="fw-bold mb-1">Harold Bermudez</h5>
+          <p class="text-muted small mb-0">Full-Stack Developer</p>
+          <hr class="my-2">
+          <small class="text-muted">Authentication &amp; CRUD Operations</small>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="dev-card">
+          <div class="dev-avatar"><i class="fa-solid fa-user"></i></div>
+          <h5 class="fw-bold mb-1">Justin Tania</h5>
+          <p class="text-muted small mb-0">Full-Stack Developer</p>
+          <hr class="my-2">
+          <small class="text-muted">UI Design &amp; AWS Deployment</small>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         </div>
       </div>
 
@@ -102,7 +148,11 @@
   </div>
 </section>
 
+<<<<<<< HEAD
 <!-- FEATURES -->
+=======
+<!-- ════ FEATURES ════ -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 <section class="py-5" style="background:#fff;">
   <div class="container">
 
@@ -141,12 +191,22 @@
   </div>
 </section>
 
+<<<<<<< HEAD
 <!-- BACK BUTTON -->
 <div class="text-center py-5">
   <a href="index.php" class="btn fw-bold px-5 py-2"
      style="background:var(--tip-gold);color:#111;border-radius:10px;font-size:1rem;border:none;">
+=======
+<!-- ════ BACK BUTTON ════ -->
+<div class="text-center py-5">
+  <a href="index.php" class="btn fw-bold px-5 py-2" style="background:var(--tip-gold);color:#111;border-radius:10px;font-size:1rem;">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
     <i class="fa-solid fa-arrow-left me-2"></i>Back to Marketplace
   </a>
 </div>
 
+<<<<<<< HEAD
 <?php include 'footer.php'; ?>
+=======
+<?php include 'footer.php'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad

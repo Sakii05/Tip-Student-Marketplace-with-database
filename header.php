@@ -1,11 +1,36 @@
 <?php if (session_status() === PHP_SESSION_NONE) { session_start(); } ?>
 <?php
+<<<<<<< HEAD
+=======
+// ── Unread badge: only works after ALTER TABLE adds is_read ────────────
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 $unread_count = 0;
 if (isset($_SESSION['user_id'])) {
     if (!isset($conn)) { include_once 'db.php'; }
     $uid = intval($_SESSION['user_id']);
+<<<<<<< HEAD
     $unread_res = mysqli_query($conn, "SELECT COUNT(*) AS c FROM messages WHERE receiver_id=$uid AND is_read=0");
     if ($unread_res) $unread_count = (int) mysqli_fetch_assoc($unread_res)['c'];
+=======
+    // Use @ so it silently fails if is_read column doesn't exist yet
+    $ur = @mysqli_query($conn,
+        "SELECT COUNT(*) AS c FROM messages WHERE receiver_id=$uid AND is_read=0");
+    if ($ur) $unread_count = (int) mysqli_fetch_assoc($ur)['c'];
+}
+
+// ── Profile avatar ────────────────────────────────────────────────────
+$me_profile_img = '';
+if (isset($_SESSION['user_id'])) {
+    if (!isset($conn)) { include_once 'db.php'; }
+    $mr = @mysqli_query($conn,
+        "SELECT profile_image FROM users WHERE id=" . intval($_SESSION['user_id']));
+    if ($mr) {
+        $mrow = mysqli_fetch_assoc($mr);
+        if ($mrow && !empty($mrow['profile_image']) && file_exists($mrow['profile_image'])) {
+            $me_profile_img = $mrow['profile_image'];
+        }
+    }
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 }
 ?>
 <!DOCTYPE html>
@@ -22,7 +47,10 @@ if (isset($_SESSION['user_id'])) {
             --tip-gold:   #F5C400;
             --tip-maroon: #7B1C2E;
             --tip-black:  #111111;
+<<<<<<< HEAD
             --tip-dark:   #1A1A1A;
+=======
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             --tip-gray:   #F4F4F4;
             --tip-muted:  #6c757d;
         }
@@ -33,10 +61,17 @@ if (isset($_SESSION['user_id'])) {
         .tip-navbar .navbar-brand { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:1px; color:var(--tip-gold)!important; display:flex; align-items:center; gap:10px; }
         .tip-navbar .navbar-brand .brand-badge { background:var(--tip-maroon); color:#fff; font-size:0.55rem; font-family:'Nunito',sans-serif; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:3px 7px; border-radius:4px; line-height:1.4; }
         .tip-navbar .nav-link { color:rgba(255,255,255,0.8)!important; font-weight:600; font-size:0.9rem; padding:0.5rem 0.85rem!important; border-radius:6px; transition:background 0.2s,color 0.2s; }
+<<<<<<< HEAD
         .tip-navbar .nav-link:hover,.tip-navbar .nav-link.active { background:rgba(245,196,0,0.12); color:var(--tip-gold)!important; }
         .tip-navbar .btn-nav-login { background:transparent; border:1.5px solid var(--tip-gold); color:var(--tip-gold)!important; font-weight:700; font-size:0.85rem; padding:6px 16px; border-radius:6px; transition:all 0.2s; text-decoration:none; }
         .tip-navbar .btn-nav-login:hover { background:var(--tip-gold); color:var(--tip-black)!important; }
         .tip-navbar .btn-nav-sell { background:var(--tip-gold); border:none; color:var(--tip-black)!important; font-weight:800; font-size:0.85rem; padding:6px 18px; border-radius:6px; transition:all 0.2s; text-decoration:none; }
+=======
+        .tip-navbar .nav-link:hover, .tip-navbar .nav-link.active { background:rgba(245,196,0,0.12); color:var(--tip-gold)!important; }
+        .tip-navbar .btn-nav-login { background:transparent; border:1.5px solid var(--tip-gold); color:var(--tip-gold)!important; font-weight:700; font-size:0.85rem; padding:6px 16px; border-radius:6px; transition:all 0.2s; text-decoration:none; display:inline-block; }
+        .tip-navbar .btn-nav-login:hover { background:var(--tip-gold); color:var(--tip-black)!important; }
+        .tip-navbar .btn-nav-sell { background:var(--tip-gold); border:none; color:var(--tip-black)!important; font-weight:800; font-size:0.85rem; padding:6px 18px; border-radius:6px; transition:all 0.2s; text-decoration:none; display:inline-block; }
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         .tip-navbar .btn-nav-sell:hover { background:#e0b000; }
         .tip-navbar .navbar-toggler { border-color:rgba(245,196,0,0.5); }
         .tip-navbar .navbar-toggler-icon { filter:invert(1); }
@@ -54,7 +89,11 @@ if (isset($_SESSION['user_id'])) {
         .product-card .card-title { font-weight:800; font-size:1rem; margin-bottom:4px; color:var(--tip-black); }
         .product-card .price-badge { background:var(--tip-gold); color:var(--tip-black); font-weight:800; font-size:1rem; padding:4px 12px; border-radius:20px; display:inline-block; margin-bottom:8px; }
         .product-card .seller-info { font-size:0.8rem; color:var(--tip-muted); margin-bottom:10px; }
+<<<<<<< HEAD
         .product-card .btn-buy { background:var(--tip-maroon); color:#fff; border:none; font-weight:700; border-radius:8px; padding:8px 0; width:100%; transition:background 0.2s; display:block; text-align:center; text-decoration:none; font-size:0.88rem; }
+=======
+        .product-card .btn-buy { background:var(--tip-maroon); color:#fff; border:none; font-weight:700; border-radius:8px; padding:8px 0; width:100%; transition:background 0.2s; display:block; text-align:center; text-decoration:none; font-size:0.88rem; cursor:pointer; }
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         .product-card .btn-buy:hover { background:#5e1522; color:#fff; }
         .product-card .btn-msg { background:rgba(245,196,0,0.1); color:var(--tip-black); border:1.5px solid var(--tip-gold); font-weight:700; border-radius:8px; padding:7px 0; width:100%; transition:all 0.2s; display:block; text-align:center; text-decoration:none; font-size:0.85rem; }
         .product-card .btn-msg:hover { background:var(--tip-gold); color:var(--tip-black); }
@@ -70,7 +109,11 @@ if (isset($_SESSION['user_id'])) {
         .auth-card .form-control { border-radius:8px; padding:10px 14px; border:1.5px solid #ddd; font-size:0.92rem; }
         .auth-card .form-control:focus { border-color:var(--tip-gold); box-shadow:0 0 0 3px rgba(245,196,0,0.15); }
         .auth-card .input-group-text { background:var(--tip-black); color:var(--tip-gold); border-color:#ddd; }
+<<<<<<< HEAD
         .btn-tip-primary { background:var(--tip-maroon); color:#fff; border:none; font-weight:800; border-radius:8px; padding:11px; font-size:0.95rem; width:100%; transition:background 0.2s; }
+=======
+        .btn-tip-primary { background:var(--tip-maroon); color:#fff; border:none; font-weight:800; border-radius:8px; padding:11px; font-size:0.95rem; width:100%; transition:background 0.2s; cursor:pointer; }
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         .btn-tip-primary:hover { background:#5e1522; color:#fff; }
 
         /* SECTION */
@@ -81,7 +124,11 @@ if (isset($_SESSION['user_id'])) {
         /* FORM CARD */
         .form-card { background:#fff; border-radius:14px; box-shadow:0 4px 24px rgba(0,0,0,0.09); padding:36px; max-width:600px; margin:0 auto; }
         .form-card .form-label { font-weight:700; font-size:0.88rem; color:#444; }
+<<<<<<< HEAD
         .form-card .form-control,.form-card .form-select { border-radius:8px; padding:10px 14px; border:1.5px solid #ddd; font-size:0.92rem; }
+=======
+        .form-card .form-control, .form-card .form-select { border-radius:8px; padding:10px 14px; border:1.5px solid #ddd; font-size:0.92rem; }
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         .form-card .form-control:focus { border-color:var(--tip-gold); box-shadow:0 0 0 3px rgba(245,196,0,0.15); }
 
         /* ABOUT */
@@ -107,14 +154,22 @@ if (isset($_SESSION['user_id'])) {
         .alert { border-radius:10px; font-weight:600; font-size:0.9rem; }
 
         /* PROFILE */
+<<<<<<< HEAD
         .profile-avatar { width:110px; height:110px; border-radius:50%; object-fit:cover; border:4px solid var(--tip-gold); }
         .profile-avatar-placeholder { width:110px; height:110px; border-radius:50%; background:var(--tip-black); color:var(--tip-gold); font-size:2.8rem; display:flex; align-items:center; justify-content:center; border:4px solid var(--tip-gold); margin:0 auto; }
 
         /* CHAT BUBBLES */
+=======
+        .profile-avatar { width:110px; height:110px; border-radius:50%; object-fit:cover; border:4px solid var(--tip-gold); display:block; }
+        .profile-avatar-placeholder { width:110px; height:110px; border-radius:50%; background:var(--tip-black); color:var(--tip-gold); font-size:2.8rem; display:flex; align-items:center; justify-content:center; border:4px solid var(--tip-gold); margin:0 auto; }
+
+        /* CHAT */
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         .chat-bubble-wrap { display:flex; margin-bottom:16px; gap:10px; align-items:flex-end; }
         .chat-bubble-wrap.mine { flex-direction:row-reverse; }
         .chat-avatar { width:36px; height:36px; border-radius:50%; background:var(--tip-black); color:var(--tip-gold); display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:800; flex-shrink:0; overflow:hidden; }
         .chat-avatar img { width:100%; height:100%; object-fit:cover; }
+<<<<<<< HEAD
         .chat-bubble { max-width:68%; padding:10px 14px; border-radius:18px; font-size:0.9rem; line-height:1.55; }
         .chat-bubble.theirs { background:#fff; border:1.5px solid #eee; border-bottom-left-radius:4px; color:#222; }
         .chat-bubble.mine { background:var(--tip-maroon); color:#fff; border-bottom-right-radius:4px; }
@@ -123,6 +178,17 @@ if (isset($_SESSION['user_id'])) {
 
         /* INBOX */
         .convo-item { display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid #f0f0f0; text-decoration:none; color:inherit; transition:background 0.15s; }
+=======
+        .chat-bubble { max-width:68%; padding:10px 14px; border-radius:18px; font-size:0.9rem; line-height:1.55; word-break:break-word; }
+        .chat-bubble.theirs { background:#fff; border:1.5px solid #eee; border-bottom-left-radius:4px; color:#222; }
+        .chat-bubble.mine { background:var(--tip-maroon); color:#fff; border-bottom-right-radius:4px; }
+        .chat-time { font-size:0.68rem; opacity:0.5; margin-top:5px; display:block; }
+        .chat-bubble.mine .chat-time { text-align:right; color:rgba(255,255,255,0.75); opacity:1; }
+
+        /* INBOX */
+        .convo-item { display:flex; align-items:center; gap:14px; padding:14px 18px; border-bottom:1px solid #f0f0f0; text-decoration:none; color:inherit; transition:background 0.15s; }
+        .convo-item:last-child { border-bottom:none; }
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         .convo-item:hover { background:#fafafa; }
         .convo-item.unread { background:#fffdf0; }
         .convo-avatar { width:46px; height:46px; border-radius:50%; background:var(--tip-black); color:var(--tip-gold); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0; overflow:hidden; border:2px solid transparent; }
@@ -157,6 +223,7 @@ if (isset($_SESSION['user_id'])) {
       </ul>
       <div class="d-flex align-items-center gap-2 flex-wrap">
         <?php if (isset($_SESSION['user_id'])): ?>
+<<<<<<< HEAD
           <?php
             if (!isset($conn)) include_once 'db.php';
             $me = mysqli_fetch_assoc(mysqli_query($conn,"SELECT profile_image FROM users WHERE id=".intval($_SESSION['user_id'])));
@@ -167,6 +234,15 @@ if (isset($_SESSION['user_id'])) {
              onmouseover="this.style.background='rgba(245,196,0,0.1)'" onmouseout="this.style.background='transparent'">
             <?php if ($me && !empty($me['profile_image']) && file_exists($me['profile_image'])): ?>
               <img src="<?php echo htmlspecialchars($me['profile_image']); ?>"
+=======
+          <a href="profile.php?id=<?php echo intval($_SESSION['user_id']); ?>"
+             class="d-flex align-items-center gap-2 text-decoration-none"
+             style="color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;padding:5px 10px;border-radius:6px;transition:background 0.2s;"
+             onmouseover="this.style.background='rgba(245,196,0,0.1)'"
+             onmouseout="this.style.background='transparent'">
+            <?php if ($me_profile_img): ?>
+              <img src="<?php echo htmlspecialchars($me_profile_img); ?>"
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
                    style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid var(--tip-gold);">
             <?php else: ?>
               <i class="fa-solid fa-user-circle" style="color:var(--tip-gold);font-size:1.25rem;"></i>

@@ -34,37 +34,53 @@ $recent_users = mysqli_query($conn,
   <div class="col-6 col-md-3">
     <div class="stat-card">
       <div class="stat-icon gold"><i class="fa-solid fa-users"></i></div>
+<<<<<<< HEAD
       <div>
         <div class="stat-value"><?php echo $total_users; ?></div>
         <div class="stat-label">Total Users</div>
       </div>
+=======
+      <div><div class="stat-value"><?php echo $total_users; ?></div><div class="stat-label">Total Users</div></div>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
     </div>
   </div>
   <div class="col-6 col-md-3">
     <div class="stat-card maroon">
       <div class="stat-icon maroon"><i class="fa-solid fa-box-open"></i></div>
+<<<<<<< HEAD
       <div>
         <div class="stat-value"><?php echo $total_products; ?></div>
         <div class="stat-label">Total Listings</div>
       </div>
+=======
+      <div><div class="stat-value"><?php echo $total_products; ?></div><div class="stat-label">Total Listings</div></div>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
     </div>
   </div>
   <div class="col-6 col-md-3">
     <div class="stat-card green">
       <div class="stat-icon green"><i class="fa-solid fa-store"></i></div>
+<<<<<<< HEAD
       <div>
         <div class="stat-value"><?php echo $available_products; ?></div>
         <div class="stat-label">Available</div>
       </div>
+=======
+      <div><div class="stat-value"><?php echo $available_products; ?></div><div class="stat-label">Available</div></div>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
     </div>
   </div>
   <div class="col-6 col-md-3">
     <div class="stat-card blue">
       <div class="stat-icon blue"><i class="fa-solid fa-receipt"></i></div>
+<<<<<<< HEAD
       <div>
         <div class="stat-value"><?php echo $total_transactions; ?></div>
         <div class="stat-label">Transactions</div>
       </div>
+=======
+      <div><div class="stat-value"><?php echo $total_transactions; ?></div><div class="stat-label">Transactions</div></div>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
     </div>
   </div>
 </div>
@@ -73,12 +89,19 @@ $recent_users = mysqli_query($conn,
 <div class="mb-4 p-4 rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-3"
      style="background:linear-gradient(135deg,var(--tip-black),#2a0d17);border-left:5px solid var(--tip-gold);">
   <div>
+<<<<<<< HEAD
     <div style="color:rgba(255,255,255,0.5);font-size:0.78rem;font-weight:700;
                 letter-spacing:2px;text-transform:uppercase;">
       Total Marketplace Revenue
     </div>
     <div style="font-family:'Bebas Neue',sans-serif;font-size:2.6rem;
                 color:var(--tip-gold);letter-spacing:1px;line-height:1.1;">
+=======
+    <div style="color:rgba(255,255,255,0.5);font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;">
+      Total Marketplace Revenue
+    </div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--tip-gold);letter-spacing:1px;line-height:1.1;">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
       ₱<?php echo number_format($revenue, 2); ?>
     </div>
     <div style="color:rgba(255,255,255,0.4);font-size:0.8rem;">
@@ -91,7 +114,10 @@ $recent_users = mysqli_query($conn,
 <!-- TABLES -->
 <div class="row g-4">
 
+<<<<<<< HEAD
   <!-- Recent Transactions -->
+=======
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
   <div class="col-lg-7">
     <div class="admin-table-card">
       <div class="table-header">
@@ -100,6 +126,7 @@ $recent_users = mysqli_query($conn,
       </div>
       <div class="table-responsive">
         <table class="table">
+<<<<<<< HEAD
           <thead>
             <tr><th>#</th><th>Item</th><th>Buyer</th><th>Price</th><th>Date</th></tr>
           </thead>
@@ -108,12 +135,19 @@ $recent_users = mysqli_query($conn,
               <tr>
                 <td colspan="5" class="text-center text-muted py-4">No transactions yet</td>
               </tr>
+=======
+          <thead><tr><th>#</th><th>Item</th><th>Buyer</th><th>Price</th><th>Date</th></tr></thead>
+          <tbody>
+            <?php if (mysqli_num_rows($recent_trans) === 0): ?>
+              <tr><td colspan="5" class="text-center text-muted py-4">No transactions yet</td></tr>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             <?php else: ?>
               <?php while ($t = mysqli_fetch_assoc($recent_trans)): ?>
               <tr>
                 <td><span style="color:#aaa;font-size:0.8rem;">#<?php echo $t['id']; ?></span></td>
                 <td><strong><?php echo htmlspecialchars($t['title']); ?></strong></td>
                 <td><?php echo htmlspecialchars($t['buyer']); ?></td>
+<<<<<<< HEAD
                 <td>
                   <span style="color:var(--tip-maroon);font-weight:800;">
                     ₱<?php echo number_format($t['price'], 2); ?>
@@ -122,6 +156,11 @@ $recent_users = mysqli_query($conn,
                 <td style="color:#aaa;font-size:0.8rem;">
                   <?php echo !empty($t['purchase_date'])
                     ? date('M d', strtotime($t['purchase_date'])) : '—'; ?>
+=======
+                <td><span style="color:var(--tip-maroon);font-weight:800;">₱<?php echo number_format($t['price'],2); ?></span></td>
+                <td style="color:#aaa;font-size:0.8rem;">
+                  <?php echo !empty($t['purchase_date']) ? date('M d', strtotime($t['purchase_date'])) : '—'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
                 </td>
               </tr>
               <?php endwhile; ?>
@@ -132,7 +171,10 @@ $recent_users = mysqli_query($conn,
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Recent Users -->
+=======
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
   <div class="col-lg-5">
     <div class="admin-table-card">
       <div class="table-header">
@@ -141,6 +183,7 @@ $recent_users = mysqli_query($conn,
       </div>
       <div class="table-responsive">
         <table class="table">
+<<<<<<< HEAD
           <thead>
             <tr><th>Name</th><th>Student ID</th></tr>
           </thead>
@@ -149,11 +192,18 @@ $recent_users = mysqli_query($conn,
               <tr>
                 <td colspan="2" class="text-center text-muted py-4">No users yet</td>
               </tr>
+=======
+          <thead><tr><th>Name</th><th>Student ID</th></tr></thead>
+          <tbody>
+            <?php if (mysqli_num_rows($recent_users) === 0): ?>
+              <tr><td colspan="2" class="text-center text-muted py-4">No users yet</td></tr>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             <?php else: ?>
               <?php while ($u = mysqli_fetch_assoc($recent_users)): ?>
               <tr>
                 <td>
                   <div class="d-flex align-items-center gap-2">
+<<<<<<< HEAD
                     <div style="width:30px;height:30px;border-radius:50%;
                                 background:var(--tip-black);color:var(--tip-gold);
                                 display:flex;align-items:center;justify-content:center;
@@ -168,6 +218,17 @@ $recent_users = mysqli_query($conn,
                 <td style="color:#888;font-size:0.82rem;">
                   <?php echo htmlspecialchars($u['student_id']); ?>
                 </td>
+=======
+                    <div style="width:30px;height:30px;border-radius:50%;background:var(--tip-black);
+                                color:var(--tip-gold);display:flex;align-items:center;justify-content:center;
+                                font-size:0.75rem;font-weight:800;flex-shrink:0;">
+                      <?php echo strtoupper(substr($u['full_name'],0,1)); ?>
+                    </div>
+                    <span style="font-weight:700;font-size:0.85rem;"><?php echo htmlspecialchars($u['full_name']); ?></span>
+                  </div>
+                </td>
+                <td style="color:#888;font-size:0.82rem;"><?php echo htmlspecialchars($u['student_id']); ?></td>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               </tr>
               <?php endwhile; ?>
             <?php endif; ?>
@@ -179,4 +240,8 @@ $recent_users = mysqli_query($conn,
 
 </div>
 
+<<<<<<< HEAD
 <?php include 'admin_footer.php'; ?>
+=======
+<?php include 'admin_footer.php'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad

@@ -8,10 +8,17 @@ if (!$profile_id) { header("Location: index.php"); exit(); }
 $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id=$profile_id"));
 if (!$user) { header("Location: index.php"); exit(); }
 
+<<<<<<< HEAD
 $user_bio      = $user['bio']            ?? '';
 $user_location = $user['location']       ?? '';
 $user_avatar   = $user['profile_image']  ?? '';
 $user_banner   = $user['banner_image']   ?? '';
+=======
+// Safe — these columns may not exist if SQL hasn't been run yet
+$user_bio      = $user['bio']           ?? '';
+$user_location = $user['location']      ?? '';
+$user_avatar   = $user['profile_image'] ?? '';
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 
 $listings = mysqli_query($conn,
     "SELECT * FROM products WHERE seller_id=$profile_id AND status='Available' ORDER BY id DESC");
@@ -21,7 +28,13 @@ $sold_res   = mysqli_query($conn,
     "SELECT COUNT(*) AS c FROM products WHERE seller_id=$profile_id AND status='Sold'");
 $sold_count = $sold_res ? (int)mysqli_fetch_assoc($sold_res)['c'] : 0;
 
+<<<<<<< HEAD
 $is_own_profile   = isset($_SESSION['user_id']) && (int)$_SESSION['user_id'] === $profile_id;
+=======
+$is_own_profile = isset($_SESSION['user_id']) && (int)$_SESSION['user_id'] === $profile_id;
+
+// Check if messages table exists before linking to chat
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1");
 ?>
 <?php include 'header.php'; ?>
@@ -31,6 +44,7 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
 
     <!-- Profile Card -->
     <div class="card border-0 shadow-sm mb-4" style="border-radius:16px;overflow:hidden;">
+<<<<<<< HEAD
 
       <!-- BANNER -->
       <?php
@@ -74,15 +88,35 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
                         color:var(--tip-gold);font-size:2.2rem;display:flex;align-items:center;
                         justify-content:center;border:4px solid var(--tip-gold);flex-shrink:0;
                         box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+=======
+      <div style="height:120px;background:linear-gradient(135deg,var(--tip-black),var(--tip-maroon));"></div>
+
+      <div class="card-body px-4 pb-4" style="margin-top:-55px;">
+        <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-end gap-3 mb-3">
+
+          <!-- Avatar -->
+          <?php if (!empty($user_avatar) && file_exists($user_avatar)): ?>
+            <img src="<?php echo htmlspecialchars($user_avatar); ?>"
+                 class="profile-avatar"
+                 style="border:4px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,0.2);">
+          <?php else: ?>
+            <div class="profile-avatar-placeholder"
+                 style="border:4px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,0.2);">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               <?php echo strtoupper(substr($user['full_name'], 0, 1)); ?>
             </div>
           <?php endif; ?>
 
+<<<<<<< HEAD
           <!-- Name + Info -->
           <div class="flex-grow-1 text-center text-sm-start">
             <h4 style="font-weight:800;margin-bottom:4px;font-size:1.3rem;">
               <?php echo htmlspecialchars($user['full_name']); ?>
             </h4>
+=======
+          <div class="flex-grow-1 text-center text-sm-start" style="padding-top:12px;">
+            <h4 style="font-weight:800;margin-bottom:4px;"><?php echo htmlspecialchars($user['full_name']); ?></h4>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             <div class="text-muted" style="font-size:0.85rem;">
               <i class="fa-solid fa-id-card me-1"></i><?php echo htmlspecialchars($user['student_id']); ?>
               <?php if (!empty($user_location)): ?>
@@ -91,8 +125,12 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
             </div>
           </div>
 
+<<<<<<< HEAD
           <!-- Action Buttons -->
           <div class="d-flex gap-2 flex-wrap justify-content-center">
+=======
+          <div class="d-flex gap-2 flex-wrap justify-content-center" style="padding-top:10px;">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             <?php if ($is_own_profile): ?>
               <a href="edit_profile.php"
                  class="btn fw-bold px-4"
@@ -129,9 +167,13 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
           </p>
         <?php else: ?>
           <p style="font-size:0.88rem;color:#ccc;margin:0;font-style:italic;">
+<<<<<<< HEAD
             <?php echo $is_own_profile
               ? 'No bio yet — <a href="edit_profile.php" style="color:var(--tip-maroon)">add one!</a>'
               : 'No bio yet.'; ?>
+=======
+            <?php echo $is_own_profile ? 'No bio yet — <a href="edit_profile.php" style="color:var(--tip-maroon)">add one!</a>' : 'No bio yet.'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
           </p>
         <?php endif; ?>
       </div>
@@ -157,6 +199,7 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
     <?php else: ?>
       <div class="row g-3">
         <?php while ($item = mysqli_fetch_assoc($listings)):
+<<<<<<< HEAD
           $img_path  = trim($item['image_path'] ?? '');
           $has_img   = !empty($img_path) && file_exists(__DIR__ . '/' . $img_path);
           $src       = $has_img ? htmlspecialchars($img_path) : '';
@@ -174,6 +217,17 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
                   <span style="font-size:0.72rem;color:#bbb;font-weight:600;">No Photo</span>
                 </div>
               <?php endif; ?>
+=======
+          $has_img = !empty($item['image_path']) && file_exists($item['image_path']);
+          $src     = $has_img
+            ? htmlspecialchars($item['image_path'])
+            : 'https://picsum.photos/seed/' . ($item['id'] * 7 + 13) . '/300/200';
+        ?>
+        <div class="col-sm-6 col-md-4">
+          <div class="product-card card h-100">
+            <div style="height:160px;overflow:hidden;background:#f0f0f0;">
+              <img src="<?php echo $src; ?>" style="width:100%;height:160px;object-fit:cover;" loading="lazy">
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
             </div>
             <div class="card-body d-flex flex-column">
               <h6 class="card-title"><?php echo htmlspecialchars($item['title']); ?></h6>
@@ -226,4 +280,8 @@ $msg_table_exists = (bool) @mysqli_query($conn, "SELECT 1 FROM messages LIMIT 1"
   </div>
 </section>
 
+<<<<<<< HEAD
 <?php include 'footer.php'; ?>
+=======
+<?php include 'footer.php'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad

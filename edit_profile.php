@@ -7,10 +7,17 @@ $uid  = intval($_SESSION['user_id']);
 $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id=$uid"));
 if (!$user) { header("Location: logout.php"); exit(); }
 
+<<<<<<< HEAD
 $user_bio      = $user['bio']            ?? '';
 $user_location = $user['location']       ?? '';
 $user_avatar   = $user['profile_image']  ?? '';
 $user_banner   = $user['banner_image']   ?? '';
+=======
+// Safe fallbacks if new columns don't exist yet
+$user_bio      = $user['bio']           ?? '';
+$user_location = $user['location']      ?? '';
+$user_avatar   = $user['profile_image'] ?? '';
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 ?>
 <?php include 'header.php'; ?>
 
@@ -34,6 +41,7 @@ $user_banner   = $user['banner_image']   ?? '';
       <div class="alert alert-danger d-flex align-items-center gap-2 mb-4"
            style="max-width:600px;margin:0 auto 1.5rem;">
         <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+<<<<<<< HEAD
         <span>Could not save changes. Please try again.</span>
       </div>
     <?php endif; ?>
@@ -93,6 +101,19 @@ $user_banner   = $user['banner_image']   ?? '';
         <div class="mb-4 text-center">
           <div class="mb-3">
             <?php if (!empty($user_avatar) && file_exists(__DIR__ . '/' . $user_avatar)): ?>
+=======
+        <span>Could not save changes. Make sure you have run the SQL upgrade first.</span>
+      </div>
+    <?php endif; ?>
+
+    <div class="form-card">
+      <form action="edit_profile_process.php" method="POST" enctype="multipart/form-data">
+
+        <!-- Profile Picture -->
+        <div class="mb-4 text-center">
+          <div class="mb-3" id="avatarBox">
+            <?php if (!empty($user_avatar) && file_exists($user_avatar)): ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               <img id="avatarPreview"
                    src="<?php echo htmlspecialchars($user_avatar); ?>"
                    class="profile-avatar"
@@ -117,7 +138,11 @@ $user_banner   = $user['banner_image']   ?? '';
           <small class="text-muted">JPG, PNG, or WEBP — square photo recommended</small>
         </div>
 
+<<<<<<< HEAD
         <!-- FULL NAME (read only) -->
+=======
+        <!-- Full Name (read-only) -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         <div class="mb-3">
           <label class="form-label">
             <i class="fa-solid fa-user me-1" style="color:var(--tip-maroon)"></i>Full Name
@@ -128,7 +153,11 @@ $user_banner   = $user['banner_image']   ?? '';
           <small class="text-muted">Name cannot be changed after registration.</small>
         </div>
 
+<<<<<<< HEAD
         <!-- BIO -->
+=======
+        <!-- Bio -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         <div class="mb-3">
           <label class="form-label" for="bio">
             <i class="fa-solid fa-align-left me-1" style="color:var(--tip-maroon)"></i>Bio
@@ -137,14 +166,22 @@ $user_banner   = $user['banner_image']   ?? '';
                     placeholder="Tell other students about yourself…"><?php echo htmlspecialchars($user_bio); ?></textarea>
         </div>
 
+<<<<<<< HEAD
         <!-- CAMPUS -->
+=======
+        <!-- Campus -->
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
         <div class="mb-4">
           <label class="form-label" for="location">
             <i class="fa-solid fa-location-dot me-1" style="color:var(--tip-maroon)"></i>Campus
           </label>
           <select class="form-select" id="location" name="location">
             <option value="">— Select Campus —</option>
+<<<<<<< HEAD
             <?php foreach (['QC Campus','Manila Campus'] as $c): ?>
+=======
+            <?php foreach (['QC Campus','Manila Campus','Cavite Campus'] as $c): ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
               <option value="<?php echo $c; ?>"
                       <?php echo $user_location === $c ? 'selected' : ''; ?>>
                 <?php echo $c; ?>
@@ -182,6 +219,7 @@ function previewAvatar(input) {
   };
   reader.readAsDataURL(input.files[0]);
 }
+<<<<<<< HEAD
 
 function previewBanner(input) {
   if (!input.files || !input.files[0]) return;
@@ -199,3 +237,8 @@ function previewBanner(input) {
 </script>
 
 <?php include 'footer.php'; ?>
+=======
+</script>
+
+<?php include 'footer.php'; ?>
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad

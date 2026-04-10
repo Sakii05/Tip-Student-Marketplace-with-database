@@ -1,9 +1,16 @@
 <?php
 session_start();
 
+<<<<<<< HEAD
 
 define('ADMIN_USERNAME', 'admin');
 define('ADMIN_PASSWORD', 'admin12345'); 
+=======
+// ── CHANGE THESE CREDENTIALS ──────────────────────────
+define('ADMIN_USERNAME', 'admin');
+define('ADMIN_PASSWORD', 'tip2024admin'); // Change this!
+// ──────────────────────────────────────────────────────
+>>>>>>> 8a3d08d84a37941360a00543a24ebbd2047121ad
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
